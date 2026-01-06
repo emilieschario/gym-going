@@ -3,16 +3,17 @@ import Calendar from "@/components/Calendar";
 
 export default async function Home() {
   const gymDataMap = await getGymDataMap();
+  const lastUpdated = new Date().toLocaleString();
   
   const today = "2026-01-06";
   const todayAnswer = gymDataMap.get(today);
   const didGoToday = todayAnswer === "YES";
 
   return (
-    <main className="min-h-screen bg-stone-50 flex items-center justify-center p-6">
-      <div className="w-full max-w-md space-y-8">
+    <main className="min-h-screen bg-stone-50 flex items-center justify-center p-8">
+      <div className="w-full max-w-md space-y-10">
         {/* Header */}
-        <div className="text-center space-y-4">
+        <div className="text-center space-y-6">
           <h1 className="text-3xl font-bold text-stone-800 tracking-tight">
             Did Emilie go to the gym today?
           </h1>
@@ -44,7 +45,7 @@ export default async function Home() {
         
         {/* Footer */}
         <p className="text-center text-sm text-stone-400">
-          Data sourced from Google Sheets
+          Data last updated: {lastUpdated}
         </p>
       </div>
     </main>
