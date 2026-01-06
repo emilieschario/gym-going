@@ -3,7 +3,11 @@ import Calendar from "@/components/Calendar";
 
 export default async function Home() {
   const gymDataMap = await getGymDataMap();
-  const lastUpdated = new Date().toLocaleString();
+  const lastUpdated = new Date().toLocaleString("en-US", {
+    timeZone: "America/New_York",
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
   
   const today = "2026-01-06";
   const todayAnswer = gymDataMap.get(today);
@@ -45,7 +49,7 @@ export default async function Home() {
         
         {/* Footer */}
         <p className="text-center text-sm text-stone-400">
-          Data last updated: {lastUpdated}
+          Data last updated: {lastUpdated} ET
         </p>
       </div>
     </main>
