@@ -1,0 +1,59 @@
+name: Check Google Sheet Data
+
+on:
+  schedule:
+    # Run every day at 8 AM ET (13:00 UTC)
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+  # Allow manual triggering
+
+jobs:
+  check-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "bun"
+          
+      - name: Install dependencies
+        run: bun install
+        
+      - name: Fetch Google Sheet data
+        run: |
+          echo "Checking Google Sheet data..."
+          curl -sL "https://docs.google.com/spreadsheets/d/1hjp8Ba90tuxwUuPHekV3xg2z1lX73gI0aZfwSIxSKJc/export?format=csv&gid=0" > sheet_data.csv
+          echo "Sheet data fetched successfully!"
+          echo "---"
+          head -20 sheet_data.csv
+          
+      - name: Verify data format
+        run: |
+          if grep -q "TRUE" sheet_data.csv; then
+            echo "✓ Data contains TRUE values"
+          else
+            echo "⚠ No TRUE values found in sheet"
+          fi
+          
+          if grep -q "2026-01" sheet_data.csv; then
+            echo "✓ January 2026 data found"
+          else
+            echo "⚠ No January 2026 data found"
+          fi
+          
+      - name: Show last update time
+        run: |
+          echo "Last check: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "Timezone: ET (America/New_York)"
+          
+      - name: Upload sheet data as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: google-sheet-data
+          path: sheet_data.csv
+          retention-days: 7
