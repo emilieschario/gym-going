@@ -1,13 +1,27 @@
 import { getGymDataMap } from "@/lib/gym-data";
 import Calendar from "@/components/Calendar";
 
-export default async function Home() {
-  const gymDataMap = await getGymDataMap();
-  const lastUpdated = new Date().toLocaleString("en-US", {
+// Fetch timestamp from static file (updated by GitHub Action)
+async function getTimestamp() {
+  try {
+    const response = await fetch("/data-timestamp.json", { cache: "no-store" });
+    if (response.ok) {
+      const data = await response.json();
+      return data.lastUpdatedET;
+    }
+  } catch {
+    // Fallback to current time if file not available
+  }
+  return new Date().toLocaleString("en-US", {
     timeZone: "America/New_York",
     dateStyle: "medium",
     timeStyle: "short",
-  });
+  }) + " ET";
+}
+
+export default async function Home() {
+  const gymDataMap = await getGymDataMap();
+  const lastUpdated = await getTimestamp();
   
   const today = "2026-01-06";
   const todayAnswer = gymDataMap.get(today);
@@ -49,7 +63,7 @@ export default async function Home() {
         
         {/* Footer */}
         <p className="text-center text-sm text-stone-400">
-          Data last updated: {lastUpdated} ET
+          Data last updated: {lastUpdated}
         </p>
       </div>
     </main>

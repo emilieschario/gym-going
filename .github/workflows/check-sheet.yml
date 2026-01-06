@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -46,10 +48,25 @@ jobs:
             echo "⚠ No January 2026 data found"
           fi
           
-      - name: Show last update time
+      - name: Calculate ET timestamp
+        id: timestamp
         run: |
-          echo "Last check: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          echo "Timezone: ET (America/New_York)"
+          UTC_TIME=$(date -u +"%Y-%m-%dT%H:%M:%S.000Z")
+          ET_TIME=$(TZ='America/New_York' date +"%b %d, %Y, %l:%M %p ET")
+          echo "utc_time=$UTC_TIME" >> $GITHUB_OUTPUT
+          echo "et_time=$ET_TIME" >> $GITHUB_OUTPUT
+          echo "Current time (ET): $ET_TIME"
+          
+      - name: Update timestamp file
+        run: |
+          cat > public/data-timestamp.json << EOF
+          {
+            "lastUpdated": "${{ steps.timestamp.outputs.utc_time }}",
+            "lastUpdatedET": "${{ steps.timestamp.outputs.et_time }}"
+          }
+          EOF
+          echo "Timestamp file updated!"
+          cat public/data-timestamp.json
           
       - name: Upload sheet data as artifact
         uses: actions/upload-artifact@v4
@@ -57,3 +74,9 @@ jobs:
           name: google-sheet-data
           path: sheet_data.csv
           retention-days: 7
+          
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update data timestamp via GitHub Action"
+          file_pattern: public/data-timestamp.json
