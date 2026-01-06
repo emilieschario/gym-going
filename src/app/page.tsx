@@ -4,40 +4,38 @@ import Calendar from "@/components/Calendar";
 export default async function Home() {
   const gymDataMap = await getGymDataMap();
   
-  // Get today's date (January 6, 2026)
   const today = "2026-01-06";
   const todayAnswer = gymDataMap.get(today);
   const didGoToday = todayAnswer === "YES";
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-lg">
+    <main className="min-h-screen bg-stone-50 flex items-center justify-center p-6">
+      <div className="w-full max-w-md space-y-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+        <div className="text-center space-y-4">
+          <h1 className="text-3xl font-bold text-stone-800 tracking-tight">
             Did Emilie go to the gym today?
           </h1>
+          
+          {/* Status Badge */}
           <div className={`
-            inline-flex items-center gap-3 px-6 py-4 rounded-2xl font-semibold text-xl
+            inline-flex items-center gap-3 px-8 py-5 rounded-full font-semibold text-lg shadow-sm
             ${didGoToday 
-              ? "bg-emerald-100 text-emerald-700 ring-2 ring-emerald-300" 
-              : "bg-gray-100 text-gray-600 ring-2 ring-gray-200"
+              ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200" 
+              : "bg-stone-100 text-stone-600 ring-1 ring-stone-200"
             }
           `}>
-            {didGoToday ? (
-              <>
-                <span className="text-2xl">✓</span>
-                <span>Emilie went to the gym today</span>
-              </>
-            ) : (
-              <>
-                <span className="text-2xl">✗</span>
-                <span>Emilie did not go to the gym today</span>
-              </>
-            )}
+            <span className="text-2xl">{didGoToday ? "✓" : "✗"}</span>
+            <span>
+              {didGoToday 
+                ? "Emilie went to the gym today" 
+                : "Emilie did not go to the gym today"
+              }
+            </span>
           </div>
         </div>
         
+        {/* Calendar */}
         <Calendar
           year={2026}
           month={1}
@@ -45,8 +43,8 @@ export default async function Home() {
         />
         
         {/* Footer */}
-        <p className="text-center text-sm text-gray-400 mt-8">
-          Data sourced from Google Sheets • Updates hourly
+        <p className="text-center text-sm text-stone-400">
+          Data sourced from Google Sheets
         </p>
       </div>
     </main>
