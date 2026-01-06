@@ -28,19 +28,22 @@ export async function fetchGymData(): Promise<GymDay[]> {
     const lines = csvText.trim().split("\n");
     
     // Skip header row and parse data
-    // Expected format: Date, Answer
+    // Expected format: Date, Boolean (TRUE means YES, empty means NO)
     const gymDays: GymDay[] = [];
     
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line) continue;
       
-      const [date, answer] = line.split(",").map((s) => s.trim());
+      // Handle potential comma within quoted fields
+      const parts = line.split(",");
+      const date = parts[0].trim();
+      const boolValue = parts[1]?.trim();
       
-      if (date && answer) {
+      if (date && date.match(/^\d{4}-\d{2}-\d{2}$/)) {
         gymDays.push({
           date,
-          answer: answer.toUpperCase() === "YES" ? "YES" : "NO",
+          answer: boolValue === "TRUE" ? "YES" : "NO",
         });
       }
     }
