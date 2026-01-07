@@ -35,8 +35,24 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
     return days;
   }, [year, month, gymDataMap]);
 
-  const yesCount = [...gymDataMap.values()].filter(v => v === "YES").length;
-  const totalDays = [...gymDataMap.values()].length;
+  // Calculate days up to and including today
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1; // JS months are 0-indexed
+  const currentDay = today.getDate();
+  
+  // If viewing current month/year, count up to today; otherwise count all days in the month
+  const isCurrentMonth = year === currentYear && month === currentMonth;
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const totalDays = isCurrentMonth ? currentDay : daysInMonth;
+  
+  // Count gym days only up to totalDays
+  const yesCount = [...gymDataMap.entries()]
+    .filter(([dateStr, answer]) => {
+      const dayNum = parseInt(dateStr.split("-")[2], 10);
+      return dayNum <= totalDays && answer === "YES";
+    }).length;
+  
   const percentage = totalDays > 0 ? Math.round((yesCount / totalDays) * 100) : 0;
 
   return (
