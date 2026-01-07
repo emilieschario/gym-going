@@ -13,8 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Did Emilie Go to the Gym?",
-  description: "Track Emilie's gym attendance for January 2026",
+  title: "Did Emilie go to the gym today?",
+  description:
+    "A tiny nostalgia-powered calendar that tracks Emilie's gym adventures in January 2026.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
