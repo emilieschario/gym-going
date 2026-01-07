@@ -28,43 +28,51 @@ export default async function Home() {
   const didGoToday = todayAnswer === "YES";
 
   return (
-    <main className="min-h-screen bg-stone-50 flex items-center justify-center p-8">
-      <div className="w-full max-w-md space-y-10">
-        {/* Header */}
-        <div className="text-center space-y-6">
-          <h1 className="text-3xl font-bold text-stone-800 tracking-tight">
-            Did Emilie go to the gym today?
+    <main className="min-h-screen bg-stone-50 pb-24 flex flex-col items-center">
+      <div className="w-full max-w-xl px-4 py-10 sm:px-6 sm:py-14">
+        {/* Header Section */}
+        <header className="text-center mb-8 animate-fade-in">
+          <h1 className="text-xl sm:text-2xl font-semibold text-stone-900 tracking-tight mb-5">
+            Did Emilie go to the{" "}
+            <span className="gradient-text">gym</span> today?
           </h1>
           
-          {/* Status Badge */}
+          {/* Status Card */}
           <div className={`
-            inline-flex items-center gap-3 px-8 py-5 rounded-full font-semibold text-lg shadow-sm
-            ${didGoToday 
-              ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200" 
-              : "bg-stone-100 text-stone-600 ring-1 ring-stone-200"
+            inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full text-sm sm:text-base font-medium
+            transition-colors
+            ${didGoToday
+              ? "bg-emerald-100 text-emerald-800"
+              : "bg-stone-100 text-stone-600"
             }
           `}>
-            <span className="text-2xl">{didGoToday ? "✓" : "✗"}</span>
+            <span className="text-lg sm:text-xl">
+              {didGoToday ? "✓" : "—"}
+            </span>
             <span>
-              {didGoToday 
-                ? "Emilie went to the gym today" 
-                : "Emilie did not go to the gym today"
+              {didGoToday
+                ? "Yes! She went to the gym."
+                : "Not today — rest day."
               }
             </span>
           </div>
-        </div>
+        </header>
         
         {/* Calendar */}
-        <Calendar
-          year={2026}
-          month={1}
-          gymDataMap={gymDataMap}
-        />
+        <div className="animate-fade-in-delay-1">
+          <Calendar
+            year={2026}
+            month={1}
+            gymDataMap={gymDataMap}
+          />
+        </div>
         
-        {/* Footer */}
-        <p className="text-center text-sm text-stone-400">
-          Data last updated: {lastUpdated}
-        </p>
+        {/* Footer info */}
+        <footer className="mt-6 text-center animate-fade-in-delay-2">
+          <p className="text-xs text-stone-400">
+            Last updated {lastUpdated}
+          </p>
+        </footer>
       </div>
     </main>
   );

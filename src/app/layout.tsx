@@ -1,20 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Emilie went to the gym today",
-  description: "Track Emilie's gym attendance for January 2026",
+  title: "Did Emilie go to the gym today?",
+  description: "A simple tracker for Emilie's gym attendance in January 2026.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -24,10 +22,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${inter.className} antialiased bg-stone-50 text-stone-900`}>
         {children}
+        <footer className="fixed bottom-0 inset-x-0 py-3 sm:py-4 text-center text-[10px] sm:text-xs text-stone-400 bg-gradient-to-t from-stone-50 via-stone-50 to-transparent px-4">
+          <span className="block sm:inline">©2026 Made with ❤ & nostalgia</span>{" "}
+          <span className="block sm:inline">on planet earth by{" "}
+            <a
+              href="https://emilieschario.com"
+              className="text-emerald-600 hover:text-emerald-700 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              emilie
+            </a>
+          </span>
+        </footer>
       </body>
     </html>
   );
