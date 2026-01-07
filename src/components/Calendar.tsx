@@ -80,7 +80,7 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
                 style={{ width: `${percentage}%` }}
               />
             </div>
-            <p className="text-xs text-white/70 mt-2 text-right">{percentage}% complete</p>
+            <p className="text-xs text-white/70 mt-2 text-right">{percentage}% attendance rate</p>
           </div>
         )}
       </div>
