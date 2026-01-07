@@ -29,7 +29,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-stone-50 pb-24 flex flex-col items-center">
-      <div className="w-full max-w-md px-4 py-10 sm:px-6 sm:py-14">
+      <div className="w-full max-w-xl px-4 py-10 sm:px-6 sm:py-14">
         {/* Header Section */}
         <header className="text-center mb-8 animate-fade-in">
           <h1 className="text-xl sm:text-2xl font-semibold text-stone-900 tracking-tight mb-5">

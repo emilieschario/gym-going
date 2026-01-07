@@ -56,35 +56,33 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
   const percentage = totalDays > 0 ? Math.round((yesCount / totalDays) * 100) : 0;
 
   return (
-    <div className="rounded-3xl shadow-xl shadow-emerald-900/10 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-500 p-8">
+    <div className="w-full rounded-3xl shadow-xl shadow-emerald-900/10 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-500">
       {/* Header */}
-      <div className="px-6 pt-6 pb-5 sm:px-8 sm:pt-7 sm:pb-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg sm:text-xl font-bold text-white">
-            {monthName}
-          </h2>
-          <div className="flex items-center gap-1.5 text-sm text-white/90">
-            <span className="font-bold">{yesCount}</span>
-            <span className="text-white/60">/</span>
-            <span>{totalDays}</span>
-            <span className="text-white/60 ml-0.5">days</span>
-          </div>
+      <div className="flex items-center justify-between pl-12 pr-6 pt-6 pb-5 sm:pl-16 sm:pr-8 sm:pt-7 sm:pb-6">
+        <h2 className="text-lg sm:text-xl font-bold text-white">
+          {monthName}
+        </h2>
+        <div className="flex items-center gap-1.5 text-sm text-white/90">
+          <span className="font-bold">{yesCount}</span>
+          <span className="text-white/60">/</span>
+          <span>{totalDays}</span>
+          <span className="text-white/60 ml-0.5">days</span>
         </div>
-        
-        {/* Progress bar */}
-        {totalDays > 0 && (
-          <div>
-            <div className="h-2 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
-              <div 
-                className="h-full bg-white rounded-full transition-all duration-700 ease-out"
-                style={{ width: `${percentage}%` }}
-              />
-            </div>
-            <p className="text-xs text-white/70 mt-2 text-right">{percentage}% attendance rate</p>
-          </div>
-        )}
       </div>
       
+      {/* Progress bar */}
+      {totalDays > 0 && (
+        <div className="px-6 pb-5 sm:px-8">
+          <div className="h-2 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
+            <div 
+              className="h-full bg-white rounded-full transition-all duration-700 ease-out"
+              style={{ width: `${percentage}%` }}
+            />
+          </div>
+          <p className="text-xs text-white/70 mt-2 text-right">{percentage}% attendance rate</p>
+        </div>
+      )}
+
       {/* Calendar Grid */}
       <div className="bg-white rounded-t-3xl pt-10 pb-8 sm:pt-14 sm:pb-10 px-6 sm:px-10">
         {/* Inner container with additional side padding */}
