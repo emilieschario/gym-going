@@ -86,56 +86,59 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
       </div>
       
       {/* Calendar Grid */}
-      <div className="bg-white rounded-t-3xl px-8 py-8 sm:px-12 sm:py-10">
-        {/* Weekday headers */}
-        <div className="grid grid-cols-7 gap-1">
-          {["S", "M", "T", "W", "T", "F", "S"].map((day, i) => (
-            <div
-              key={i}
-              className="text-center text-[11px] sm:text-xs font-semibold text-stone-400 py-2"
-            >
-              {day}
-            </div>
-          ))}
-        </div>
-        
-        {/* Spacer between weekday headers and date grid */}
-        <div className="h-6 sm:h-8"></div>
-        
-        {/* Days grid */}
-        <div className="grid grid-cols-7 gap-2 sm:gap-3">
-          {calendarDays.map((day, index) => (
-            <div
-              key={index}
-              className={`
-                aspect-square flex items-center justify-center rounded-xl text-xs sm:text-sm font-medium
-                transition-all duration-200 ease-out
-                ${day.date === null
-                  ? ""
-                  : day.answer === "YES"
-                    ? "bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-md shadow-emerald-400/30 hover:scale-105 hover:shadow-lg"
-                    : day.answer === "NO"
-                      ? "bg-stone-100 text-stone-400 hover:bg-stone-200"
-                      : "bg-stone-50 text-stone-300 border border-dashed border-stone-200"
-                }
-              `}
-            >
-              {day.date !== null && (
-                <span>{day.date}</span>
-              )}
-            </div>
-          ))}
-        </div>
-        
-        {/* Legend */}
-        <div className="flex items-center justify-center gap-6 mt-6 pt-5 border-t border-stone-100">
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-md shadow-sm" />
-            <span className="text-xs text-stone-500">Gym day</span>
+      <div className="bg-white rounded-t-3xl py-8 sm:py-10">
+        {/* Inner container with side margins */}
+        <div className="mx-6 sm:mx-10">
+          {/* Weekday headers */}
+          <div className="grid grid-cols-7 gap-1">
+            {["S", "M", "T", "W", "T", "F", "S"].map((day, i) => (
+              <div
+                key={i}
+                className="text-center text-[11px] sm:text-xs font-semibold text-stone-400 py-2"
+              >
+                {day}
+              </div>
+            ))}
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-stone-100 rounded-md border border-stone-200" />
-            <span className="text-xs text-stone-500">Rest day</span>
+          
+          {/* Spacer between weekday headers and date grid */}
+          <div className="h-6 sm:h-8"></div>
+          
+          {/* Days grid */}
+          <div className="grid grid-cols-7 gap-2 sm:gap-3">
+            {calendarDays.map((day, index) => (
+              <div
+                key={index}
+                className={`
+                  aspect-square flex items-center justify-center rounded-xl text-xs sm:text-sm font-medium
+                  transition-all duration-200 ease-out
+                  ${day.date === null
+                    ? ""
+                    : day.answer === "YES"
+                      ? "bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-md shadow-emerald-400/30 hover:scale-105 hover:shadow-lg"
+                      : day.answer === "NO"
+                        ? "bg-stone-100 text-stone-400 hover:bg-stone-200"
+                        : "bg-stone-50 text-stone-300 border border-dashed border-stone-200"
+                  }
+                `}
+              >
+                {day.date !== null && (
+                  <span>{day.date}</span>
+                )}
+              </div>
+            ))}
+          </div>
+          
+          {/* Legend */}
+          <div className="flex items-center justify-center gap-6 mt-6 pt-5 border-t border-stone-100">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-md shadow-sm" />
+              <span className="text-xs text-stone-500">Gym day</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 bg-stone-100 rounded-md border border-stone-200" />
+              <span className="text-xs text-stone-500">Rest day</span>
+            </div>
           </div>
         </div>
       </div>
