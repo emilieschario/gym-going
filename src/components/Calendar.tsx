@@ -56,7 +56,7 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
   const percentage = totalDays > 0 ? Math.round((yesCount / totalDays) * 100) : 0;
 
   return (
-    <div className="rounded-3xl overflow-hidden shadow-xl shadow-emerald-900/10 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-500">
+    <div className="rounded-3xl shadow-xl shadow-emerald-900/10 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-500 p-4">
       {/* Header */}
       <div className="px-6 pt-6 pb-5 sm:px-8 sm:pt-7 sm:pb-6">
         <div className="flex items-center justify-between mb-4">
