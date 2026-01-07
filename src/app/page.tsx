@@ -28,28 +28,28 @@ export default async function Home() {
   const didGoToday = todayAnswer === "YES";
 
   return (
-    <main className="min-h-screen bg-stone-50 pb-24 flex flex-col items-center">
-      <div className="w-full max-w-xl px-4 py-10 sm:px-6 sm:py-14">
+    <main className="min-h-screen bg-stone-50 pb-20 sm:pb-24 flex flex-col items-center">
+      <div className="w-full max-w-lg px-5 py-8 sm:px-8 sm:py-12 mx-4">
         {/* Header Section */}
         <header className="text-center mb-8 animate-fade-in">
-          <h1 className="text-xl sm:text-2xl font-semibold text-stone-900 tracking-tight mb-5">
+          <h1 className="text-lg sm:text-2xl font-semibold text-stone-900 tracking-tight mb-5">
             Did Emilie go to the{" "}
             <span className="gradient-text">gym</span> today?
           </h1>
           
-          {/* Status Card */}
+          {/* Status Card - using rounded-xl instead of rounded-full to prevent text cutoff */}
           <div className={`
-            inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full text-sm sm:text-base font-medium
+            inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm sm:text-base font-medium
             transition-colors
             ${didGoToday
               ? "bg-emerald-100 text-emerald-800"
               : "bg-stone-100 text-stone-600"
             }
           `}>
-            <span className="text-lg sm:text-xl">
+            <span className="text-base sm:text-xl">
               {didGoToday ? "✓" : "—"}
             </span>
-            <span>
+            <span className="whitespace-nowrap">
               {didGoToday
                 ? "Yes! She went to the gym."
                 : "Not today — rest day."
@@ -69,8 +69,23 @@ export default async function Home() {
         
         {/* Footer info */}
         <footer className="mt-6 text-center animate-fade-in-delay-2">
-          <p className="text-xs text-stone-400">
+          <p className="text-[10px] sm:text-xs text-stone-400">
             Last updated {lastUpdated}
+          </p>
+        </footer>
+
+        {/* Copyright footer */}
+        <footer className="mt-6 text-center animate-fade-in-delay-3">
+          <p className="text-[10px] sm:text-xs text-stone-400">
+            ©2026 Made with ❤ & nostalgia on planet earth by{" "}
+            <a
+              href="https://emilieschario.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-stone-400 hover:text-emerald-600 transition-colors"
+            >
+              emilie
+            </a>
           </p>
         </footer>
       </div>
