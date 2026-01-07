@@ -38,6 +38,11 @@ body {
   opacity: 0;
 }
 
+.animate-fade-in-delay-3 {
+  animation: fade-in 0.4s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -61,4 +66,12 @@ html {
 ::selection {
   background-color: #d1fae5;
   color: #065f46;
+}
+
+/* Prevent text overflow on small screens */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
