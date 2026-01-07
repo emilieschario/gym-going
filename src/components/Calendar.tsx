@@ -88,7 +88,7 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
       {/* Calendar Grid */}
       <div className="bg-white rounded-t-3xl px-6 py-8 sm:px-8 sm:py-10">
         {/* Weekday headers */}
-        <div className="grid grid-cols-7 gap-1 pb-4 mb-4 border-b border-stone-100">
+        <div className="grid grid-cols-7 gap-1">
           {["S", "M", "T", "W", "T", "F", "S"].map((day, i) => (
             <div
               key={i}
@@ -98,6 +98,9 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
             </div>
           ))}
         </div>
+        
+        {/* Spacer between weekday headers and date grid */}
+        <div className="h-6 sm:h-8"></div>
         
         {/* Days grid */}
         <div className="grid grid-cols-7 gap-2 sm:gap-3">
