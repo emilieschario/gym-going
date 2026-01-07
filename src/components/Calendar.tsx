@@ -40,42 +40,43 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
   const percentage = totalDays > 0 ? Math.round((yesCount / totalDays) * 100) : 0;
 
   return (
-    <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden">
+    <div className="rounded-3xl overflow-hidden shadow-xl shadow-emerald-900/10 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-500">
       {/* Header */}
-      <div className="px-4 py-4 sm:px-5 sm:py-5 border-b border-stone-100">
-        <div className="flex items-center justify-between">
-          <h2 className="text-base sm:text-lg font-semibold text-stone-900">
+      <div className="px-5 pt-6 pb-5 sm:px-7 sm:pt-7 sm:pb-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg sm:text-xl font-bold text-white">
             {monthName}
           </h2>
-          <div className="flex items-center gap-1 text-xs sm:text-sm">
-            <span className="font-medium text-emerald-600">{yesCount}</span>
-            <span className="text-stone-400">/</span>
-            <span className="text-stone-500">{totalDays}</span>
-            <span className="text-stone-400 ml-1">days</span>
+          <div className="flex items-center gap-1.5 text-sm text-white/90">
+            <span className="font-bold">{yesCount}</span>
+            <span className="text-white/60">/</span>
+            <span>{totalDays}</span>
+            <span className="text-white/60 ml-0.5">days</span>
           </div>
         </div>
         
         {/* Progress bar */}
         {totalDays > 0 && (
-          <div className="mt-3">
-            <div className="h-1.5 bg-stone-100 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-emerald-500 rounded-full transition-all duration-500 ease-out"
+          <div>
+            <div className="h-2 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
+              <div 
+                className="h-full bg-white rounded-full transition-all duration-700 ease-out"
                 style={{ width: `${percentage}%` }}
               />
             </div>
+            <p className="text-xs text-white/70 mt-2 text-right">{percentage}% complete</p>
           </div>
         )}
       </div>
       
       {/* Calendar Grid */}
-      <div className="px-3 py-4 sm:px-5 sm:py-5">
+      <div className="bg-white rounded-t-3xl px-5 py-6 sm:px-7 sm:py-7">
         {/* Weekday headers */}
-        <div className="grid grid-cols-7 gap-1 mb-2">
+        <div className="grid grid-cols-7 gap-1 mb-3">
           {["S", "M", "T", "W", "T", "F", "S"].map((day, i) => (
             <div
               key={i}
-              className="text-center text-[10px] sm:text-xs font-medium text-stone-400 py-1.5"
+              className="text-center text-[11px] sm:text-xs font-semibold text-stone-400 py-1"
             >
               {day}
             </div>
@@ -83,20 +84,20 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
         </div>
         
         {/* Days grid */}
-        <div className="grid grid-cols-7 gap-1">
+        <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
           {calendarDays.map((day, index) => (
             <div
               key={index}
               className={`
-                aspect-square flex items-center justify-center rounded-md sm:rounded-lg text-xs sm:text-sm
-                transition-colors
+                aspect-square flex items-center justify-center rounded-xl text-xs sm:text-sm font-medium
+                transition-all duration-200 ease-out
                 ${day.date === null
                   ? ""
                   : day.answer === "YES"
-                    ? "bg-emerald-500 text-white font-medium"
+                    ? "bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-md shadow-emerald-400/30 hover:scale-105 hover:shadow-lg"
                     : day.answer === "NO"
-                      ? "bg-stone-100 text-stone-400"
-                      : "bg-stone-50 text-stone-300"
+                      ? "bg-stone-100 text-stone-400 hover:bg-stone-200"
+                      : "bg-stone-50 text-stone-300 border border-dashed border-stone-200"
                 }
               `}
             >
@@ -106,18 +107,16 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
             </div>
           ))}
         </div>
-      </div>
-      
-      {/* Legend */}
-      <div className="px-4 py-3 sm:py-4 bg-stone-50 border-t border-stone-100">
-        <div className="flex items-center justify-center gap-5 sm:gap-6 text-[10px] sm:text-xs text-stone-500">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-emerald-500 rounded" />
-            <span>Gym</span>
+        
+        {/* Legend */}
+        <div className="flex items-center justify-center gap-6 mt-6 pt-5 border-t border-stone-100">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-md shadow-sm" />
+            <span className="text-xs text-stone-500">Gym day</span>
           </div>
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-stone-100 rounded border border-stone-200" />
-            <span>Rest</span>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-stone-100 rounded-md border border-stone-200" />
+            <span className="text-xs text-stone-500">Rest day</span>
           </div>
         </div>
       </div>
