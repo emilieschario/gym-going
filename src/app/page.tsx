@@ -29,7 +29,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-stone-50 pb-24 flex flex-col items-center">
-      <div className="w-full max-w-xl px-4 py-10 sm:px-6 sm:py-14">
+      <div className="w-full max-w-xl px-6 py-10 sm:px-10 sm:py-14 mx-4">
         {/* Header Section */}
         <header className="text-center mb-8 animate-fade-in">
           <h1 className="text-xl sm:text-2xl font-semibold text-stone-900 tracking-tight mb-5">
@@ -71,6 +71,21 @@ export default async function Home() {
         <footer className="mt-6 text-center animate-fade-in-delay-2">
           <p className="text-xs text-stone-400">
             Last updated {lastUpdated}
+          </p>
+        </footer>
+
+        {/* Copyright footer */}
+        <footer className="mt-8 text-center animate-fade-in-delay-3">
+          <p className="text-xs text-stone-400">
+            ©2026 Made with ❤ & nostalgia on planet earth by{" "}
+            <a
+              href="https://emilieschario.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-stone-400 hover:text-emerald-600 transition-colors"
+            >
+              emilie
+            </a>
           </p>
         </footer>
       </div>

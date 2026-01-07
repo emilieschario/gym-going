@@ -58,8 +58,8 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
   return (
     <div className="w-full rounded-3xl shadow-xl shadow-emerald-900/10 bg-gradient-to-br from-emerald-600 via-emerald-500 to-teal-500">
       {/* Header */}
-      <div className="flex items-center justify-between pl-12 pr-6 pt-6 pb-5 sm:pl-16 sm:pr-8 sm:pt-7 sm:pb-6">
-        <h2 className="text-lg sm:text-xl font-bold text-white">
+      <div className="w-full flex items-center justify-between px-6 pt-6 pb-5 sm:px-8 sm:pt-7 sm:pb-6">
+        <h2 className="text-lg sm:text-xl font-bold text-white pl-14 sm:pl-20">
           {monthName}
         </h2>
         <div className="flex items-center gap-1.5 text-sm text-white/90">
