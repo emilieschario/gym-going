@@ -86,7 +86,7 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
       </div>
       
       {/* Calendar Grid */}
-      <div className="bg-white rounded-t-3xl py-8 sm:py-10">
+      <div className="bg-white rounded-t-3xl pt-10 pb-8 sm:pt-14 sm:pb-10">
         {/* Inner container with side margins */}
         <div className="mx-8 sm:mx-14 lg:mx-16">
           {/* Weekday headers */}
