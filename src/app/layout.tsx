@@ -24,16 +24,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased bg-stone-50 text-stone-900`}>
         {children}
-        <footer className="fixed bottom-0 inset-x-0 py-4 text-center text-xs text-stone-400 bg-gradient-to-t from-stone-50 via-stone-50 to-transparent">
-          ©2026 Made with ❤ & nostalgia on planet earth by{" "}
-          <a 
-            href="https://emilieschario.com" 
-            className="text-emerald-600 hover:text-emerald-700 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            emilie
-          </a>
+        <footer className="fixed bottom-0 inset-x-0 py-3 sm:py-4 text-center text-[10px] sm:text-xs text-stone-400 bg-gradient-to-t from-stone-50 via-stone-50 to-transparent px-4">
+          <span className="block sm:inline">©2026 Made with ❤ & nostalgia</span>{" "}
+          <span className="block sm:inline">on planet earth by{" "}
+            <a
+              href="https://emilieschario.com"
+              className="text-emerald-600 hover:text-emerald-700 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              emilie
+            </a>
+          </span>
         </footer>
       </body>
     </html>

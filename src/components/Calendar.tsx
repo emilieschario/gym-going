@@ -42,12 +42,12 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
   return (
     <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-5 border-b border-stone-100">
+      <div className="px-4 py-4 sm:px-5 sm:py-5 border-b border-stone-100">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-stone-900">
+          <h2 className="text-base sm:text-lg font-semibold text-stone-900">
             {monthName}
           </h2>
-          <div className="flex items-center gap-1.5 text-sm">
+          <div className="flex items-center gap-1 text-xs sm:text-sm">
             <span className="font-medium text-emerald-600">{yesCount}</span>
             <span className="text-stone-400">/</span>
             <span className="text-stone-500">{totalDays}</span>
@@ -59,7 +59,7 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
         {totalDays > 0 && (
           <div className="mt-3">
             <div className="h-1.5 bg-stone-100 rounded-full overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-emerald-500 rounded-full transition-all duration-500 ease-out"
                 style={{ width: `${percentage}%` }}
               />
@@ -69,13 +69,13 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
       </div>
       
       {/* Calendar Grid */}
-      <div className="px-6 py-5">
+      <div className="px-3 py-4 sm:px-5 sm:py-5">
         {/* Weekday headers */}
         <div className="grid grid-cols-7 gap-1 mb-2">
           {["S", "M", "T", "W", "T", "F", "S"].map((day, i) => (
             <div
               key={i}
-              className="text-center text-xs font-medium text-stone-400 py-2"
+              className="text-center text-[10px] sm:text-xs font-medium text-stone-400 py-1.5"
             >
               {day}
             </div>
@@ -88,7 +88,7 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
             <div
               key={index}
               className={`
-                aspect-square flex items-center justify-center rounded-lg text-sm
+                aspect-square flex items-center justify-center rounded-md sm:rounded-lg text-xs sm:text-sm
                 transition-colors
                 ${day.date === null
                   ? ""
@@ -109,14 +109,14 @@ export default function Calendar({ year, month, gymDataMap }: CalendarProps) {
       </div>
       
       {/* Legend */}
-      <div className="px-6 py-4 bg-stone-50 border-t border-stone-100">
-        <div className="flex items-center justify-center gap-6 text-xs text-stone-500">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-emerald-500 rounded" />
+      <div className="px-4 py-3 sm:py-4 bg-stone-50 border-t border-stone-100">
+        <div className="flex items-center justify-center gap-5 sm:gap-6 text-[10px] sm:text-xs text-stone-500">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-emerald-500 rounded" />
             <span>Gym</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-stone-100 rounded border border-stone-200" />
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-stone-100 rounded border border-stone-200" />
             <span>Rest</span>
           </div>
         </div>

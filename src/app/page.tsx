@@ -28,30 +28,30 @@ export default async function Home() {
   const didGoToday = todayAnswer === "YES";
 
   return (
-    <main className="min-h-screen bg-stone-50 pb-24">
-      <div className="mx-auto max-w-md px-5 py-12 sm:py-16">
+    <main className="min-h-screen bg-stone-50 pb-24 flex flex-col items-center">
+      <div className="w-full max-w-md px-4 py-10 sm:px-6 sm:py-14">
         {/* Header Section */}
-        <header className="text-center mb-10 animate-fade-in">
-          <h1 className="text-2xl sm:text-3xl font-semibold text-stone-900 tracking-tight mb-6">
+        <header className="text-center mb-8 animate-fade-in">
+          <h1 className="text-xl sm:text-2xl font-semibold text-stone-900 tracking-tight mb-5">
             Did Emilie go to the{" "}
             <span className="gradient-text">gym</span> today?
           </h1>
           
           {/* Status Card */}
           <div className={`
-            inline-flex items-center gap-3 px-5 py-3 rounded-full text-base font-medium
+            inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full text-sm sm:text-base font-medium
             transition-colors
-            ${didGoToday 
-              ? "bg-emerald-100 text-emerald-800" 
+            ${didGoToday
+              ? "bg-emerald-100 text-emerald-800"
               : "bg-stone-100 text-stone-600"
             }
           `}>
-            <span className="text-xl">
+            <span className="text-lg sm:text-xl">
               {didGoToday ? "✓" : "—"}
             </span>
             <span>
-              {didGoToday 
-                ? "Yes! She went to the gym." 
+              {didGoToday
+                ? "Yes! She went to the gym."
                 : "Not today — rest day."
               }
             </span>
@@ -68,7 +68,7 @@ export default async function Home() {
         </div>
         
         {/* Footer info */}
-        <footer className="mt-8 text-center animate-fade-in-delay-2">
+        <footer className="mt-6 text-center animate-fade-in-delay-2">
           <p className="text-xs text-stone-400">
             Last updated {lastUpdated}
           </p>
